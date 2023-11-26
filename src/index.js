@@ -1,13 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Products from './components/Products';
+import BasicExample from './components/Navbar';
+import CardProduct from './components/CardProduct';
+
+import { Provider } from 'react-redux'
+import { store } from './rtk/store';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:<>
+    <BasicExample/>
+      < Products/>
+    </>,
+  },
+  {
+    path :'/products',
+    element : <>     <BasicExample/> <Products/></> ,
+  }
+  ,
+  {
+    path: '/cardProduct',
+    element:<><BasicExample/> <CardProduct/></>,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// console.log(store.getState)
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+    <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

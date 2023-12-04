@@ -11,6 +11,8 @@ import { addCard } from '../rtk/Slice/cardSlice';
 const Products = () => {
   const products = useSelector( (state)=>   state.allProducts);
 
+
+  console.log(products)
   const dispatch = useDispatch()
   useEffect(()=> {
   dispatch(fetchProdcuts());
